@@ -74,6 +74,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+  [id] { scroll-margin-top: 84px; }
   body { background: var(--butter); color: var(--navy); font: 17px/1.55 var(--body); -webkit-font-smoothing: antialiased; padding-bottom: 80px; overflow-x: hidden; }
   img { display: block; max-width: 100%; height: auto; }
   a { color: var(--red); }
@@ -239,6 +240,45 @@
   .dish, .step { transition: transform .2s ease, box-shadow .2s ease; }
   .dish:hover, .dish:active { transform: translateY(-6px) rotate(-1.5deg); }
 
+  /* Reviews */
+  .quotes { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 16px 16px; margin-inline: -16px; scrollbar-width: none; }
+  .quotes::-webkit-scrollbar { display: none; }
+  .quote-card { flex: none; width: 280px; scroll-snap-align: start; background: var(--white); border: 3px solid var(--navy); border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 6px 6px 0 var(--navy); }
+  .quote-card:nth-child(3n+2) { background: var(--pink); }
+  .quote-card:nth-child(3n) { background: var(--butter-2); box-shadow: 6px 6px 0 var(--red); }
+  .quote-card .mark { font: 56px/0.6 var(--display); color: var(--red); height: 22px; }
+  .quote-card p { font-size: 18px; line-height: 1.45; font-weight: 500; flex: 1; }
+  .quote-card .who { font-weight: 700; font-size: 14px; }
+  .quote-card .src { font-size: 12px; color: var(--muted); }
+  .reviews .note { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  /* Noona's nights */
+  .nights { background: var(--navy); color: var(--butter); }
+  .nights .kicker { color: var(--butter-2); }
+  .night-cards { display: grid; gap: 22px; }
+  .night { position: relative; border: 3px solid var(--butter); border-radius: 28px; padding: 24px 22px; display: grid; gap: 10px; color: var(--navy); }
+  .night.tarot { background: var(--pink); box-shadow: 7px 7px 0 var(--butter-2); }
+  .night.kimchi { background: var(--butter-2); box-shadow: 7px 7px 0 var(--red); }
+  .night svg { width: 56px; height: 56px; }
+  .night h3 { font-size: 42px; line-height: 1; }
+  .night .rush { font-weight: 700; }
+  .night .btn { justify-self: start; margin-top: 4px; }
+  .night .when { justify-self: start; padding: 5px 12px; border-radius: 999px; background: var(--navy); color: var(--butter); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+
+  /* Offer banner (shown on its own; the full pop-up opens only when tapped) */
+  .offer-toast {
+    position: fixed; left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(84px + env(safe-area-inset-bottom, 0px)); z-index: 46;
+    display: flex; align-items: center; gap: 10px; padding: 10px 8px 10px 12px; border-radius: 18px;
+    background: var(--navy); color: var(--butter); border: 3px solid var(--butter); box-shadow: 0 10px 24px rgba(30,35,64,.3);
+    animation: sheetup .45s cubic-bezier(.2, 1.2, .4, 1) both;
+  }
+  .offer-toast[hidden] { display: none; }
+  .offer-toast svg.egg { width: 46px; height: 26px; flex: none; }
+  .offer-toast p { flex: 1; font-weight: 700; font-size: 14px; line-height: 1.3; }
+  .offer-toast .see { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--butter); background: var(--red); color: var(--butter); font: 700 14px var(--body); cursor: pointer; white-space: nowrap; }
+  .offer-toast .x { width: 40px; height: 44px; border: 0; background: transparent; color: var(--butter); cursor: pointer; display: grid; place-items: center; }
+  .offer-toast .x svg { width: 18px; height: 18px; }
+
   /* Free Gyeran Mari floating button */
   .egg-fab {
     position: fixed; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(86px + env(safe-area-inset-bottom, 0px)); z-index: 45;
@@ -303,6 +343,12 @@
     body { padding-bottom: 0; }
     .sticky { display: none; }
     .egg-fab { bottom: 28px; right: 28px; width: 112px; height: 112px; font-size: 17px; }
+    .offer-toast { left: 28px; right: auto; bottom: 28px; max-width: 460px; }
+    .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; overflow: visible; margin: 0; padding: 0; }
+    .quote-card { width: auto; }
+    .night-cards { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .night { padding: 34px; }
+    .night h3 { font-size: 52px; }
     .modal { place-items: center; padding: 24px; }
     .sheet { border-bottom: 3px solid var(--navy); border-radius: 28px; box-shadow: 10px 10px 0 var(--red); padding-bottom: 30px; }
     .logo img { height: 52px; }
@@ -468,6 +514,27 @@
     </div>
   </section>
 
+  <section class="block reviews" id="reviews">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">손님 후기</span>
+        <h2 class="display" data-i18n="revTitle">What guests say</h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>Almost as good as my mom’s ❤️</p><figcaption><span class="who">Nadin-Isabell D.</span><br><span class="src">Google review</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>TRYYY THE SAMGYEOPSALLLL!!😭🫰🏻</p><figcaption><span class="who">sora</span><br><span class="src">Google review</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>It's a cozy venue but serves up big flavors and very authentic.</p><figcaption><span class="who">Brittany W.</span><br><span class="src">Google review</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>First of all, I am Korean. As a Korean myself I have high standards…</p><figcaption><span class="who">Yujin C.</span><br><span class="src">Google review · 5 stars</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>semua makanannya enak, free refill banchan juga! 😍😍</p><figcaption><span class="who">Ni Komang A.</span><br><span class="src">Ulasan Google</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>my girlfriend says it’s the best kim chi and kim chi stew that she’s had.</p><figcaption><span class="who">Oliver L.</span><br><span class="src">Google review</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>Robby is so full of knowledge of Korean culture and is the sweetest.</p><figcaption><span class="who">Velina V.</span><br><span class="src">Google review</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>the whole cook-it-yourself experience makes it even better.</p><figcaption><span class="who">Roman U.</span><br><span class="src">Google review</span></figcaption></figure>
+        <figure class="quote-card"><span class="mark" aria-hidden="true">“</span><p>fikss bakal balik lagi sih ini</p><figcaption><span class="who">Gania M.</span><br><span class="src">Ulasan Google</span></figcaption></figure>
+      </div>
+      <p class="note" data-i18n="revNote">Word for word from our Google reviews.</p>
+    </div>
+  </section>
+
   <section class="quote">
     <div class="wrap">
       <svg viewBox="0 0 200 90" role="img" aria-label="A pair of cartoon eyes looking side to side">
@@ -477,6 +544,31 @@
       </svg>
       <p class="display" data-i18n-html="quote">Eat more.<br><span>Noona's watching.</span></p>
       <span class="rule" data-i18n="rule">— 누나집 house rule no. 1</span>
+    </div>
+  </section>
+
+  <section class="block nights" id="nights">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">누나의 밤</span>
+        <h2 class="display" data-i18n="nightsTitle">Noona's nights</h2>
+      </div>
+      <div class="night-cards">
+        <article class="night tarot">
+          <svg viewBox="0 0 56 56" fill="none" stroke="#1E2340" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="6" width="32" height="44" rx="5" fill="#FFF1C9" transform="rotate(-8 28 28)"/><path d="M28 17l3 7 7 .6-5.4 4.6 1.7 7L28 32.4l-6.3 3.8 1.7-7L18 24.6l7-.6z" fill="#FFE08A"/></svg>
+          <span class="when" data-i18n="tarotWhen">Every evening · 6–10 PM</span>
+          <h3 class="display" data-i18n="tarotT">Free tarot reading</h3>
+          <p data-i18n="tarotD">Our regulars' little secret, now out. Ask about love, luck, or whether to order more meat.</p>
+          <p class="rush" data-i18n="tarotRush">Free for every guest. Weekends are always full, so book ahead.</p>
+          <a class="btn btn-red" href="#" data-wa data-conv="wa" target="_blank" rel="noopener" data-i18n="tarotBtn">Book a tarot night</a>
+        </article>
+        <article class="night kimchi">
+          <svg viewBox="0 0 56 56" fill="none" stroke="#1E2340" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M10 34c0-12 8-24 18-24s18 12 18 24c0 7-8 12-18 12s-18-5-18-12z" fill="#D9F2E1"/><path d="M28 12v32M18 20c4 6 6 14 6 24M38 20c-4 6-6 14-6 24" /><path d="M14 38c6 4 22 4 28 0" stroke="#D7261E" stroke-width="4" stroke-linecap="round"/></svg>
+          <span class="when" data-i18n="kimchiWhen">Now and then · secret dates</span>
+          <h3 class="display" data-i18n="kimchiT">Secret kimchi nights</h3>
+          <p data-i18n="kimchiD">Every now and then we make kimchi together with guests. The dates are a secret: ask us, or watch @noonajib.id.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -559,6 +651,13 @@
   <svg viewBox="0 0 80 44" aria-hidden="true"><g stroke="#1E2340" stroke-width="3"><rect x="4" y="6" width="34" height="34" rx="12" fill="#FFD866"/><rect x="42" y="6" width="34" height="34" rx="12" fill="#FFD866"/></g><path d="M21 17q7 0 7 6t-7 6q-5 0-5-4t4-4M59 17q7 0 7 6t-7 6q-5 0-5-4t4-4" fill="none" stroke="#E39A00" stroke-width="3" stroke-linecap="round"/></svg>
   <span data-i18n-html="fab">Free<br>gyeran mari</span>
 </button>
+
+<div class="offer-toast" id="offer-toast" role="region" aria-label="Booking offer" hidden>
+  <svg class="egg" viewBox="0 0 80 44" aria-hidden="true"><g stroke="#FFF1C9" stroke-width="3"><rect x="4" y="6" width="34" height="34" rx="12" fill="#FFD866"/><rect x="42" y="6" width="34" height="34" rx="12" fill="#FFD866"/></g><path d="M21 17q7 0 7 6t-7 6q-5 0-5-4t4-4M59 17q7 0 7 6t-7 6q-5 0-5-4t4-4" fill="none" stroke="#E39A00" stroke-width="3" stroke-linecap="round"/></svg>
+  <p data-i18n="toastText">Free gyeran mari when you book on WhatsApp</p>
+  <button type="button" class="see" id="toast-see" data-i18n="toastBtn">See offer</button>
+  <button type="button" class="x" id="toast-x" aria-label="Dismiss offer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
 
 <div class="modal" id="book" hidden>
   <form class="sheet" id="book-form" role="dialog" aria-modal="true" aria-labelledby="book-title" novalidate>
@@ -660,6 +759,13 @@
       pTime: 'Visit time', pPax: 'People (pax)', pSend: 'Send on WhatsApp',
       pErrName: 'Please write your name first.', pClosed: 'Fully past today — pick another day',
       waBook: "Hi NoonaJib! I'd like to book a table and claim the FREE Gyeran Mari 🍳\nOutlet: Babakan, Canggu\nName: {name}\nDay: {day}\nVisit time: {time}\nPax: {pax}",
+      revTitle: 'What guests say', revNote: 'Word for word from our Google reviews.',
+      nightsTitle: "Noona's nights", tarotWhen: 'Every evening · 6–10 PM', tarotT: 'Free tarot reading',
+      tarotD: "Our regulars' little secret, now out. Ask about love, luck, or whether to order more meat.",
+      tarotRush: 'Free for every guest. Weekends are always full, so book ahead.', tarotBtn: 'Book a tarot night',
+      kimchiWhen: 'Now and then · secret dates', kimchiT: 'Secret kimchi nights',
+      kimchiD: 'Every now and then we make kimchi together with guests. The dates are a secret: ask us, or watch @noonajib.id.',
+      toastText: 'Free gyeran mari when you book on WhatsApp', toastBtn: 'See offer',
       locale: 'en-GB'
     },
     ko: {
@@ -694,6 +800,13 @@
       pTime: '방문 시간', pPax: '인원', pSend: '왓츠앱으로 보내기',
       pErrName: '이름을 먼저 적어 주세요.', pClosed: '오늘 예약 가능 시간이 지났어요 — 다른 날을 골라 주세요',
       waBook: '안녕하세요 누나집! 테이블 예약하고 계란말이 무료 이벤트 신청합니다 🍳\n매장: 바바깐(짱구)\n이름: {name}\n날짜: {day}\n방문 시간: {time}\n인원: {pax}명',
+      revTitle: '손님들의 한마디', revNote: '구글 리뷰 원문 그대로 옮겼어요.',
+      nightsTitle: '누나의 밤', tarotWhen: '매일 저녁 · 6–10시', tarotT: '무료 타로 리딩',
+      tarotD: '단골손님만 알던 비밀, 이제 공개해요. 연애운, 금전운, 고기 더 시킬지까지 물어보세요.',
+      tarotRush: '모든 손님 무료예요. 주말은 늘 만석이니 미리 예약하세요.', tarotBtn: '타로 나이트 예약하기',
+      kimchiWhen: '가끔 · 날짜는 비밀', kimchiT: '비밀 김치 담그기',
+      kimchiD: '가끔 손님들과 함께 김치를 담가요. 날짜는 비밀! 직접 물어보거나 @noonajib.id를 확인하세요.',
+      toastText: '왓츠앱으로 예약하면 계란말이 무료', toastBtn: '보기',
       locale: 'ko-KR'
     },
     id: {
@@ -728,6 +841,13 @@
       pTime: 'Jam visit', pPax: 'Jumlah orang (pax)', pSend: 'Kirim ke WhatsApp',
       pErrName: 'Tulis nama kamu dulu ya.', pClosed: 'Jam hari ini sudah lewat — pilih hari lain',
       waBook: 'Halo NoonaJib! Saya mau booking meja + klaim FREE Gyeran Mari 🍳\nOutlet: Babakan, Canggu\nNama: {name}\nHari: {day}\nJam visit: {time}\nPax: {pax} orang',
+      revTitle: 'Kata tamu kami', revNote: 'Dikutip apa adanya dari ulasan Google kami.',
+      nightsTitle: 'Malam di rumah Noona', tarotWhen: 'Tiap malam · 18.00–22.00', tarotT: 'Baca tarot gratis',
+      tarotD: 'Rahasia kecil para pelanggan setia, sekarang kami buka. Tanya soal cinta, rezeki, atau perlu nambah daging lagi.',
+      tarotRush: 'Gratis untuk semua tamu. Weekend selalu penuh, jadi booking dulu ya.', tarotBtn: 'Booking malam tarot',
+      kimchiWhen: 'Sesekali · tanggal rahasia', kimchiT: 'Malam rahasia bikin kimchi',
+      kimchiD: 'Sesekali kami bikin kimchi bareng tamu. Tanggalnya rahasia: tanya kami atau pantau @noonajib.id.',
+      toastText: 'Booking via WhatsApp, gyeran mari gratis', toastBtn: 'Lihat',
       locale: 'id-ID'
     }
   };
@@ -859,16 +979,24 @@
     closeBooking();
   });
 
-  // Show the offer once per visit, a few seconds after the page settles.
+  // A few seconds in, offer the deal with a small banner; the full pop-up opens only when tapped.
+  var toast = document.getElementById('offer-toast');
+  function hideToast() { toast.hidden = true; try { sessionStorage.setItem('nj-pop-seen', '1'); } catch (e) {} }
+  document.getElementById('toast-see').addEventListener('click', function () { hideToast(); openBooking('banner'); });
+  document.getElementById('toast-x').addEventListener('click', hideToast);
   var params = new URLSearchParams(location.search);
   var seen = false;
   try { seen = sessionStorage.getItem('nj-pop-seen') === '1'; } catch (e) {}
-  if (!seen && !params.has('nopop')) setTimeout(function () { openBooking('auto'); }, 6000);
+  if (!seen && !params.has('nopop')) setTimeout(function () {
+    if (!modal.hidden) return;
+    toast.hidden = false; fab.hidden = true;
+    track('offer_banner_shown');
+  }, 6000);
 
   /* ---------- Motion: pop-ins, grill turning on scroll, eyes that follow you ---------- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var popEls = document.querySelectorAll('.step, .dish, .loc, .quote p.display, .visit img, .final .brush, .sec-head h2');
+  var popEls = document.querySelectorAll('.step, .dish, .loc, .quote-card, .night, .quote p.display, .visit img, .final .brush, .sec-head h2');
   if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('pop', 'in'); io.unobserve(en.target); } });
@@ -895,7 +1023,7 @@
   }
   function frame() {
     ticking = false;
-    fab.hidden = scrollY < innerHeight * 0.7;
+    fab.hidden = !toast.hidden || scrollY < innerHeight * 0.7;
     if (plateImg && !reduce) plateImg.style.setProperty('--rot', (scrollY * 0.12).toFixed(1) + 'deg');
     if (pointer || !matchMedia('(hover: hover)').matches) aimEyes();
   }
