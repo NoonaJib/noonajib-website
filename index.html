@@ -281,7 +281,9 @@
   .pax output { flex: 1; text-align: center; font: 22px var(--display); }
   .sheet .send { width: 100%; min-height: 58px; font-size: 18px; }
   .sheet .err { color: var(--red-2); font-size: 14px; font-weight: 700; text-align: center; }
-  .sheet .fine { position: absolute; right: 16px; bottom: calc(6px + env(safe-area-inset-bottom, 0px)); font-size: 10px; opacity: .5; }
+  .sheet .deal { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: -4px; }
+  .sheet .deal span { padding: 6px 12px; border-radius: 999px; border: 2px solid var(--navy); background: var(--white); font-weight: 700; font-size: 13px; color: var(--muted); }
+  .sheet .deal span.hot { background: var(--red); color: var(--butter); border-color: var(--navy); }
 
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes ticker { to { transform: translateX(-50%); } }
@@ -579,7 +581,8 @@
       <g><circle cx="20" cy="30" r="3" fill="#2F9E55"/><circle cx="46" cy="66" r="3" fill="#F26B21"/><circle cx="72" cy="24" r="3" fill="#2F9E55"/><circle cx="100" cy="64" r="3" fill="#F26B21"/><circle cx="128" cy="30" r="3" fill="#F26B21"/><circle cx="152" cy="64" r="3" fill="#2F9E55"/></g>
     </svg>
     <h2 class="display" id="book-title" data-i18n-html="pTitle">Free<br>Gyeran Mari</h2>
-    <p class="sub" data-i18n="pSub">Book your table on WhatsApp and get a Korean rolled omelette on us.</p>
+    <p class="sub" data-i18n="pSub">Book on WhatsApp and you only need half the usual spend for a free gyeran mari.</p>
+    <p class="deal" data-i18n-html="pDeal"><span class="hot">WhatsApp booking: from IDR 500k</span><span>Walk-in: from IDR 1 million</span></p>
     <div class="field">
       <label for="b-name" data-i18n="pName">Name</label>
       <input id="b-name" name="name" type="text" autocomplete="name" required>
@@ -611,7 +614,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
       <span data-i18n="pSend">Send on WhatsApp</span>
     </button>
-    <span class="fine" data-i18n="pFine">*Min. purchase IDR 500k</span>
   </form>
 </div>
 
@@ -652,9 +654,10 @@
       footLegian: 'Legian opening 3 December · Jl. Legian No. 486B',
       waMsg: "Hi NoonaJib! I'd like to book a table at Babakan, Canggu.\nDate: \nTime: \nNumber of people: ",
       fab: 'Free<br>gyeran mari', pTag: 'Booking promo', pTitle: 'Free<br>Gyeran Mari',
-      pSub: 'Book your table on WhatsApp and get a Korean rolled omelette on us.',
+      pSub: 'Book on WhatsApp and you only need half the usual spend for a free gyeran mari.',
+      pDeal: '<span class="hot">WhatsApp booking: from IDR 500k</span><span>Walk-in: from IDR 1 million</span>',
       pName: 'Name', pDay: 'Day', pToday: 'Today', pTomorrow: 'Tomorrow', pLater: 'Day after',
-      pTime: 'Visit time', pPax: 'People (pax)', pSend: 'Send on WhatsApp', pFine: '*Min. purchase IDR 500k',
+      pTime: 'Visit time', pPax: 'People (pax)', pSend: 'Send on WhatsApp',
       pErrName: 'Please write your name first.', pClosed: 'Fully past today — pick another day',
       waBook: "Hi NoonaJib! I'd like to book a table and claim the FREE Gyeran Mari 🍳\nOutlet: Babakan, Canggu\nName: {name}\nDay: {day}\nVisit time: {time}\nPax: {pax}",
       locale: 'en-GB'
@@ -685,9 +688,10 @@
       footLegian: '레기안점 12월 3일 오픈 · Jl. Legian No. 486B',
       waMsg: '안녕하세요 누나집! 바바깐(짱구) 매장 예약하고 싶어요.\n날짜: \n시간: \n인원: ',
       fab: '계란말이<br>무료!', pTag: '예약 이벤트', pTitle: '계란말이<br>무료!',
-      pSub: '왓츠앱으로 예약하고 계란말이 서비스 받아 가세요.',
+      pSub: '왓츠앱으로 예약하면 계란말이 서비스 조건이 절반으로!',
+      pDeal: '<span class="hot">예약 손님: 50만 루피아 이상</span><span>워크인: 100만 루피아 이상</span>',
       pName: '이름', pDay: '날짜', pToday: '오늘', pTomorrow: '내일', pLater: '모레',
-      pTime: '방문 시간', pPax: '인원', pSend: '왓츠앱으로 보내기', pFine: '*최소 주문 50만 루피아',
+      pTime: '방문 시간', pPax: '인원', pSend: '왓츠앱으로 보내기',
       pErrName: '이름을 먼저 적어 주세요.', pClosed: '오늘 예약 가능 시간이 지났어요 — 다른 날을 골라 주세요',
       waBook: '안녕하세요 누나집! 테이블 예약하고 계란말이 무료 이벤트 신청합니다 🍳\n매장: 바바깐(짱구)\n이름: {name}\n날짜: {day}\n방문 시간: {time}\n인원: {pax}명',
       locale: 'ko-KR'
@@ -718,9 +722,10 @@
       footLegian: 'Legian buka 3 Desember · Jl. Legian No. 486B',
       waMsg: 'Halo NoonaJib! Saya mau reservasi meja di Babakan, Canggu.\nTanggal: \nJam: \nJumlah orang: ',
       fab: 'Gyeran mari<br>gratis', pTag: 'Promo booking', pTitle: 'Gratis<br>Gyeran Mari',
-      pSub: 'Booking meja lewat WhatsApp dan dapatkan gyeran mari (telur gulung Korea) gratis.',
+      pSub: 'Booking lewat WhatsApp, syarat gyeran mari (telur gulung Korea) gratis jadi setengahnya!',
+      pDeal: '<span class="hot">Booking WhatsApp: belanja 500rb</span><span>Walk-in: belanja 1 juta</span>',
       pName: 'Nama', pDay: 'Hari', pToday: 'Hari ini', pTomorrow: 'Besok', pLater: 'Lusa',
-      pTime: 'Jam visit', pPax: 'Jumlah orang (pax)', pSend: 'Kirim ke WhatsApp', pFine: '*Min. pembelian 500rb',
+      pTime: 'Jam visit', pPax: 'Jumlah orang (pax)', pSend: 'Kirim ke WhatsApp',
       pErrName: 'Tulis nama kamu dulu ya.', pClosed: 'Jam hari ini sudah lewat — pilih hari lain',
       waBook: 'Halo NoonaJib! Saya mau booking meja + klaim FREE Gyeran Mari 🍳\nOutlet: Babakan, Canggu\nNama: {name}\nHari: {day}\nJam visit: {time}\nPax: {pax} orang',
       locale: 'id-ID'
