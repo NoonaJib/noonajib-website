@@ -129,25 +129,25 @@
   .hero .lead { grid-area: lead; max-width: 520px; font-size: 17px; }
   .hero .ctas { grid-area: cta; display: flex; flex-direction: column; gap: 12px; }
   .hero .tagline { display: none; width: 340px; opacity: .9; }
-  .plate { grid-area: plate; position: relative; width: min(100%, 560px); aspect-ratio: 1; justify-self: center; }
-  .plate .ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 28s linear infinite; }
+  /* Ring text runs on radius 91 of a 200 box; photo radius ~76 and stickers stay inside 85 so nothing covers the ring. */
+  .plate { grid-area: plate; position: relative; width: min(100%, 560px); aspect-ratio: 1; justify-self: center; touch-action: pan-y; }
+  .plate .ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: spin 18s linear infinite; }
   .plate .photo {
-    position: absolute; inset: 9.5%; border-radius: 50%; overflow: hidden;
+    position: absolute; inset: 12%; border-radius: 50%; overflow: hidden;
     border: 4px solid var(--navy); box-shadow: 8px 8px 0 var(--red); background: var(--butter-2);
   }
-  .plate .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .plate .photo img { width: 100%; height: 100%; object-fit: cover; transform: rotate(var(--rot, 0deg)) scale(1.04); transition: transform .2s linear; }
   .sticker { position: absolute; border: 3px solid var(--navy); color: var(--navy); }
   .s-refill {
-    top: 0; left: -1%; width: 28%; aspect-ratio: 1; border-radius: 50%; background: var(--pink);
-    display: grid; place-items: center; text-align: center; font: clamp(15px, 4.2vw, 22px)/1.02 var(--display); text-transform: uppercase;
-    animation: wiggle 2.4s ease-in-out infinite;
+    left: 17%; top: 56%; width: 27%; aspect-ratio: 1; border-radius: 50%; background: var(--pink);
+    display: grid; place-items: center; text-align: center; font: clamp(14px, 4vw, 22px)/1.02 var(--display); text-transform: uppercase;
+    animation: wiggle 2.4s ease-in-out infinite; box-shadow: 3px 3px 0 var(--navy);
   }
-  .s-charcoal { right: -2%; bottom: 8%; padding: 8px 14px; border-radius: 14px; background: var(--navy); color: var(--butter); border-color: var(--butter); transform: rotate(-6deg); font: clamp(19px, 5vw, 28px) var(--korean); }
-  .s-busan { right: 2%; top: 5%; padding: 6px 13px; border-radius: 999px; background: var(--butter-2); border-width: 2px; transform: rotate(8deg); font: clamp(14px, 3.8vw, 19px) var(--display); letter-spacing: .04em; text-transform: uppercase; }
+  .s-charcoal { left: 50%; top: 22%; padding: 6px 12px; border-radius: 14px; background: var(--navy); color: var(--butter); border-color: var(--butter); transform: rotate(-6deg); font: clamp(17px, 4.6vw, 26px) var(--korean); animation: bob 3s ease-in-out infinite; }
 
   /* Ticker */
   .ticker { background: var(--red); border-block: 3px solid var(--navy); overflow: hidden; }
-  .ticker-track { display: flex; width: max-content; gap: 22px; padding: 13px 0; font: 23px var(--display); letter-spacing: .04em; text-transform: uppercase; color: var(--butter); white-space: nowrap; animation: ticker 26s linear infinite; }
+  .ticker-track { display: flex; width: max-content; gap: 22px; padding: 13px 0; font: 23px var(--display); letter-spacing: .04em; text-transform: uppercase; color: var(--butter); white-space: nowrap; animation: ticker 18s linear infinite; }
   .ticker-track .ko { font-size: 24px; }
 
   section.block { padding: 56px 0; }
@@ -230,20 +230,79 @@
 
   /* Sticky booking bar (phones) */
   .sticky { position: fixed; inset: auto 0 0 0; z-index: 50; display: flex; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: var(--butter); border-top: 3px solid var(--navy); box-shadow: 0 -6px 18px rgba(30,35,64,.18); }
-  .sticky .btn { flex: 1; min-height: 52px; box-shadow: none; font-size: 16px; }
+  .sticky .btn { flex: 1; min-width: 0; min-height: 52px; padding: 0 14px; box-shadow: none; font-size: 15px; white-space: nowrap; }
   .sticky .icon-btn { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--white); color: var(--navy); border: 2px solid var(--navy); display: grid; place-items: center; }
   .sticky .icon-btn svg { width: 22px; height: 22px; }
 
+  /* Pop-in as sections scroll into view (resting state stays visible) */
+  .pop.in { animation: popin .7s cubic-bezier(.2, 1.4, .4, 1) backwards; }
+  .dish, .step { transition: transform .2s ease, box-shadow .2s ease; }
+  .dish:hover, .dish:active { transform: translateY(-6px) rotate(-1.5deg); }
+
+  /* Free Gyeran Mari floating button */
+  .egg-fab {
+    position: fixed; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(86px + env(safe-area-inset-bottom, 0px)); z-index: 45;
+    width: 92px; height: 92px; border-radius: 50%; border: 3px solid var(--navy); background: var(--butter-2); color: var(--navy);
+    display: grid; place-items: center; text-align: center; cursor: pointer; padding: 6px;
+    font: 15px/1 var(--display); text-transform: uppercase; box-shadow: 4px 4px 0 var(--navy);
+    animation: bob 2.6s ease-in-out infinite;
+  }
+  .egg-fab svg { width: 40px; height: 22px; margin-bottom: 2px; }
+  .egg-fab[hidden] { display: none; }
+
+  /* Booking pop-up */
+  .modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: end center; padding: 0; background: rgba(30,35,64,.55); }
+  .modal[hidden] { display: none; }
+  .sheet {
+    position: relative; width: min(100%, 460px); max-height: 92vh; overflow-y: auto; background: var(--butter);
+    border: 3px solid var(--navy); border-bottom: 0; border-radius: 28px 28px 0 0;
+    padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 14px;
+    animation: sheetup .45s cubic-bezier(.2, 1.2, .4, 1) both;
+  }
+  .sheet .close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--navy); background: var(--white); color: var(--navy); display: grid; place-items: center; cursor: pointer; }
+  .sheet .close svg { width: 18px; height: 18px; }
+  .sheet .promo-tag { justify-self: start; padding: 5px 12px; border-radius: 999px; background: var(--pink); border: 2px solid var(--navy); font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .sheet .egg-art { width: 150px; height: auto; justify-self: center; animation: bob 2.6s ease-in-out infinite; }
+  .sheet h2 { font-size: 46px; color: var(--red); text-align: center; }
+  .sheet .sub { text-align: center; font-size: 15px; color: var(--muted); margin-top: -6px; }
+  .field { display: grid; gap: 6px; }
+  .field label, .field .lbl { font-weight: 700; font-size: 14px; }
+  .field input, .field select {
+    min-height: 50px; padding: 0 14px; border-radius: 14px; border: 2px solid var(--navy); background: var(--white); color: var(--navy);
+    font: 16px var(--body); width: 100%;
+  }
+  .field input:focus-visible, .field select:focus-visible, .sheet button:focus-visible, .egg-fab:focus-visible, .btn:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .days { display: flex; gap: 8px; }
+  .days button { flex: 1; min-height: 46px; border-radius: 999px; border: 2px solid var(--navy); background: var(--white); color: var(--navy); font: 700 14px var(--body); cursor: pointer; }
+  .days button[aria-pressed="true"] { background: var(--navy); color: var(--butter); }
+  .pax { display: flex; align-items: center; border: 2px solid var(--navy); border-radius: 14px; background: var(--white); overflow: hidden; }
+  .pax button { width: 48px; min-height: 46px; border: 0; background: var(--butter-2); color: var(--navy); font: 22px var(--display); cursor: pointer; }
+  .pax output { flex: 1; text-align: center; font: 22px var(--display); }
+  .sheet .send { width: 100%; min-height: 58px; font-size: 18px; }
+  .sheet .err { color: var(--red-2); font-size: 14px; font-weight: 700; text-align: center; }
+  .sheet .fine { position: absolute; right: 16px; bottom: calc(6px + env(safe-area-inset-bottom, 0px)); font-size: 10px; opacity: .5; }
+
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes ticker { to { transform: translateX(-50%); } }
-  @keyframes wiggle { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(-4deg); } }
+  @keyframes wiggle { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(-2deg) scale(1.06); } }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-6px) rotate(-2deg); } }
   @keyframes look { 0%, 18% { transform: translateX(-7px); } 28%, 62% { transform: translateX(7px); } 72%, 100% { transform: translateX(-7px); } }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+  @keyframes popin { from { transform: translateY(26px) scale(.94) rotate(-1deg); } to { transform: none; } }
+  @keyframes sheetup { from { transform: translateY(40px); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .pop.in, .s-refill, .s-charcoal, .egg-fab, .sheet, .sheet .egg-art, .quote .pupils { animation: none !important; }
+    .plate .ring { animation-duration: 60s; }
+    html { scroll-behavior: auto; }
+  }
 
   /* Desktop */
   @media (min-width: 900px) {
     body { padding-bottom: 0; }
     .sticky { display: none; }
+    .egg-fab { bottom: 28px; right: 28px; width: 112px; height: 112px; font-size: 17px; }
+    .modal { place-items: center; padding: 24px; }
+    .sheet { border-bottom: 3px solid var(--navy); border-radius: 28px; box-shadow: 10px 10px 0 var(--red); padding-bottom: 30px; }
     .logo img { height: 52px; }
     .nav a.link, .nav .btn { display: inline-flex; }
     .hero .wrap {
@@ -325,7 +384,6 @@
         <div class="photo"><img src="img/grill-circle.webp" alt="Top-down view of samgyupsal on the charcoal grill, surrounded by banchan, lettuce and chilli" width="1000" height="1000" fetchpriority="high"></div>
         <div class="sticker s-refill" data-i18n-html="stRefill">Free<br>banchan<br>refill</div>
         <div class="sticker s-charcoal">참숯 직화!</div>
-        <div class="sticker s-busan" data-i18n="stBusan">Busan style</div>
       </div>
       <div class="ctas">
         <a class="btn btn-red" href="#" data-wa data-conv="wa" target="_blank" rel="noopener">
@@ -495,6 +553,68 @@
   </a>
 </nav>
 
+<button class="egg-fab" type="button" id="egg-fab" aria-haspopup="dialog" aria-controls="book" hidden>
+  <svg viewBox="0 0 80 44" aria-hidden="true"><g stroke="#1E2340" stroke-width="3"><rect x="4" y="6" width="34" height="34" rx="12" fill="#FFD866"/><rect x="42" y="6" width="34" height="34" rx="12" fill="#FFD866"/></g><path d="M21 17q7 0 7 6t-7 6q-5 0-5-4t4-4M59 17q7 0 7 6t-7 6q-5 0-5-4t4-4" fill="none" stroke="#E39A00" stroke-width="3" stroke-linecap="round"/></svg>
+  <span data-i18n-html="fab">Free<br>gyeran mari</span>
+</button>
+
+<div class="modal" id="book" hidden>
+  <form class="sheet" id="book-form" role="dialog" aria-modal="true" aria-labelledby="book-title" novalidate>
+    <button type="button" class="close" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="promo-tag" data-i18n="pTag">Booking promo</span>
+    <svg class="egg-art" viewBox="0 0 170 92" role="img" aria-label="Three slices of gyeran mari, Korean rolled omelette">
+      <ellipse cx="85" cy="84" rx="78" ry="7" fill="#1E2340" opacity=".15"/>
+      <g stroke="#1E2340" stroke-width="3.5">
+        <rect x="6" y="18" width="50" height="60" rx="18" fill="#FFD866" transform="rotate(-6 31 48)"/>
+        <rect x="60" y="10" width="50" height="64" rx="18" fill="#FFD866"/>
+        <rect x="114" y="18" width="50" height="60" rx="18" fill="#FFD866" transform="rotate(6 139 48)"/>
+      </g>
+      <g fill="none" stroke="#E39A00" stroke-width="3.5" stroke-linecap="round">
+        <path d="M31 38q10 0 10 11t-10 11q-7 0-7-6t6-6" transform="rotate(-6 31 48)"/>
+        <path d="M85 32q10 0 10 12t-10 12q-7 0-7-6.5t6-6.5"/>
+        <path d="M139 38q10 0 10 11t-10 11q-7 0-7-6t6-6" transform="rotate(6 139 48)"/>
+      </g>
+      <g><circle cx="20" cy="30" r="3" fill="#2F9E55"/><circle cx="46" cy="66" r="3" fill="#F26B21"/><circle cx="72" cy="24" r="3" fill="#2F9E55"/><circle cx="100" cy="64" r="3" fill="#F26B21"/><circle cx="128" cy="30" r="3" fill="#F26B21"/><circle cx="152" cy="64" r="3" fill="#2F9E55"/></g>
+    </svg>
+    <h2 class="display" id="book-title" data-i18n-html="pTitle">Free<br>Gyeran Mari</h2>
+    <p class="sub" data-i18n="pSub">Book your table on WhatsApp and get a Korean rolled omelette on us.</p>
+    <div class="field">
+      <label for="b-name" data-i18n="pName">Name</label>
+      <input id="b-name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <span class="lbl" id="b-day-l" data-i18n="pDay">Day</span>
+      <div class="days" role="group" aria-labelledby="b-day-l">
+        <button type="button" data-day="0" aria-pressed="true" data-i18n="pToday">Today</button>
+        <button type="button" data-day="1" aria-pressed="false" data-i18n="pTomorrow">Tomorrow</button>
+        <button type="button" data-day="2" aria-pressed="false" data-i18n="pLater">Day after</button>
+      </div>
+    </div>
+    <div class="two">
+      <div class="field">
+        <label for="b-time" data-i18n="pTime">Visit time</label>
+        <select id="b-time" name="time"></select>
+      </div>
+      <div class="field">
+        <span class="lbl" id="b-pax-l" data-i18n="pPax">People (pax)</span>
+        <div class="pax" role="group" aria-labelledby="b-pax-l">
+          <button type="button" data-step="-1" aria-label="One less">−</button>
+          <output id="b-pax" aria-live="polite">2</output>
+          <button type="button" data-step="1" aria-label="One more">+</button>
+        </div>
+      </div>
+    </div>
+    <p class="err" id="b-err" hidden></p>
+    <button class="btn btn-red send" type="submit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+      <span data-i18n="pSend">Send on WhatsApp</span>
+    </button>
+    <span class="fine" data-i18n="pFine">*Min. purchase IDR 500k</span>
+  </form>
+</div>
+
 <script>
 (function () {
   var WA_NUMBER = '6287735525399';
@@ -530,7 +650,14 @@
       soon: 'Coming soon', soonDate: 'Grand opening<br>3 December', ctaFollow: 'Follow @noonajib.id',
       finalTitle: 'Hungry? Your grill is waiting.', finalText: "Message us on WhatsApp — we'll save you a table.",
       footLegian: 'Legian opening 3 December · Jl. Legian No. 486B',
-      waMsg: "Hi NoonaJib! I'd like to book a table at Babakan, Canggu.\nDate: \nTime: \nNumber of people: "
+      waMsg: "Hi NoonaJib! I'd like to book a table at Babakan, Canggu.\nDate: \nTime: \nNumber of people: ",
+      fab: 'Free<br>gyeran mari', pTag: 'Booking promo', pTitle: 'Free<br>Gyeran Mari',
+      pSub: 'Book your table on WhatsApp and get a Korean rolled omelette on us.',
+      pName: 'Name', pDay: 'Day', pToday: 'Today', pTomorrow: 'Tomorrow', pLater: 'Day after',
+      pTime: 'Visit time', pPax: 'People (pax)', pSend: 'Send on WhatsApp', pFine: '*Min. purchase IDR 500k',
+      pErrName: 'Please write your name first.', pClosed: 'Fully past today — pick another day',
+      waBook: "Hi NoonaJib! I'd like to book a table and claim the FREE Gyeran Mari 🍳\nOutlet: Babakan, Canggu\nName: {name}\nDay: {day}\nVisit time: {time}\nPax: {pax}",
+      locale: 'en-GB'
     },
     ko: {
       navMenu: '메뉴', navLoc: '매장', navBook: '예약하기',
@@ -556,7 +683,14 @@
       soon: '오픈 예정', soonDate: '그랜드 오픈<br>12월 3일', ctaFollow: '인스타 @noonajib.id',
       finalTitle: '배고프세요? 불판이 기다려요.', finalText: '왓츠앱으로 메시지 주세요 — 자리 맡아 둘게요.',
       footLegian: '레기안점 12월 3일 오픈 · Jl. Legian No. 486B',
-      waMsg: '안녕하세요 누나집! 바바깐(짱구) 매장 예약하고 싶어요.\n날짜: \n시간: \n인원: '
+      waMsg: '안녕하세요 누나집! 바바깐(짱구) 매장 예약하고 싶어요.\n날짜: \n시간: \n인원: ',
+      fab: '계란말이<br>무료!', pTag: '예약 이벤트', pTitle: '계란말이<br>무료!',
+      pSub: '왓츠앱으로 예약하고 계란말이 서비스 받아 가세요.',
+      pName: '이름', pDay: '날짜', pToday: '오늘', pTomorrow: '내일', pLater: '모레',
+      pTime: '방문 시간', pPax: '인원', pSend: '왓츠앱으로 보내기', pFine: '*최소 주문 50만 루피아',
+      pErrName: '이름을 먼저 적어 주세요.', pClosed: '오늘 예약 가능 시간이 지났어요 — 다른 날을 골라 주세요',
+      waBook: '안녕하세요 누나집! 테이블 예약하고 계란말이 무료 이벤트 신청합니다 🍳\n매장: 바바깐(짱구)\n이름: {name}\n날짜: {day}\n방문 시간: {time}\n인원: {pax}명',
+      locale: 'ko-KR'
     },
     id: {
       navMenu: 'Menu', navLoc: 'Lokasi', navBook: 'Reservasi',
@@ -582,7 +716,14 @@
       soon: 'Segera hadir', soonDate: 'Grand opening<br>3 Desember', ctaFollow: 'Ikuti @noonajib.id',
       finalTitle: 'Lapar? Panggangan sudah siap.', finalText: 'Kirim pesan WhatsApp — kami siapkan mejanya.',
       footLegian: 'Legian buka 3 Desember · Jl. Legian No. 486B',
-      waMsg: 'Halo NoonaJib! Saya mau reservasi meja di Babakan, Canggu.\nTanggal: \nJam: \nJumlah orang: '
+      waMsg: 'Halo NoonaJib! Saya mau reservasi meja di Babakan, Canggu.\nTanggal: \nJam: \nJumlah orang: ',
+      fab: 'Gyeran mari<br>gratis', pTag: 'Promo booking', pTitle: 'Gratis<br>Gyeran Mari',
+      pSub: 'Booking meja lewat WhatsApp dan dapatkan gyeran mari (telur gulung Korea) gratis.',
+      pName: 'Nama', pDay: 'Hari', pToday: 'Hari ini', pTomorrow: 'Besok', pLater: 'Lusa',
+      pTime: 'Jam visit', pPax: 'Jumlah orang (pax)', pSend: 'Kirim ke WhatsApp', pFine: '*Min. pembelian 500rb',
+      pErrName: 'Tulis nama kamu dulu ya.', pClosed: 'Jam hari ini sudah lewat — pilih hari lain',
+      waBook: 'Halo NoonaJib! Saya mau booking meja + klaim FREE Gyeran Mari 🍳\nOutlet: Babakan, Canggu\nNama: {name}\nHari: {day}\nJam visit: {time}\nPax: {pax} orang',
+      locale: 'id-ID'
     }
   };
 
@@ -616,16 +757,148 @@
     b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
   });
 
-  // Conversion tracking: links open in a new tab (or the dialer), so the event fires without delaying navigation.
+  function track(name, params) { if (typeof gtag === 'function') gtag('event', name, Object.assign({ transport_type: 'beacon', lang: current }, params || {})); }
+
+  // Booking buttons open the Gyeran Mari pop-up; the WhatsApp conversion fires when the form is sent.
+  // Directions and Call links fire their conversions on click, since they open a new tab or the dialer.
   document.addEventListener('click', function (e) {
+    var book = e.target.closest('[data-wa]');
+    if (book) { e.preventDefault(); openBooking('button'); return; }
     var el = e.target.closest('[data-conv]');
-    if (!el || typeof gtag !== 'function') return;
+    if (!el) return;
     var kind = el.getAttribute('data-conv');
-    if (CONV[kind]) gtag('event', 'conversion', { send_to: CONV[kind], transport_type: 'beacon' });
-    gtag('event', 'cta_click', { cta: kind, lang: current, transport_type: 'beacon' });
+    if (CONV[kind]) track('conversion', { send_to: CONV[kind] });
+    track('cta_click', { cta: kind });
   });
 
+  /* ---------- Booking pop-up ---------- */
+  var modal = document.getElementById('book');
+  var form = document.getElementById('book-form');
+  var nameIn = document.getElementById('b-name');
+  var timeSel = document.getElementById('b-time');
+  var paxOut = document.getElementById('b-pax');
+  var errEl = document.getElementById('b-err');
+  var fab = document.getElementById('egg-fab');
+  var dayBtns = Array.prototype.slice.call(form.querySelectorAll('[data-day]'));
+  var dayOffset = 0, pax = 2, lastFocus = null;
+  var OPEN_MIN = 12 * 60, LAST_SLOT = 21 * 60 + 30;
+
+  function dateFor(offset) { var d = new Date(); d.setDate(d.getDate() + offset); return d; }
+  function hhmm(m) { return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); }
+
+  function fillTimes() {
+    var keep = timeSel.value;
+    var start = OPEN_MIN;
+    if (dayOffset === 0) {
+      var now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes() + 30;
+      start = Math.max(OPEN_MIN, Math.ceil(nowMin / 30) * 30);
+    }
+    timeSel.innerHTML = '';
+    for (var m = start; m <= LAST_SLOT; m += 30) {
+      var o = document.createElement('option'); o.value = o.textContent = hhmm(m); timeSel.appendChild(o);
+    }
+    if (!timeSel.options.length) {
+      if (dayOffset === 0) { setDay(1); return; }
+    }
+    if (keep && Array.prototype.some.call(timeSel.options, function (o) { return o.value === keep; })) timeSel.value = keep;
+    else if (dayOffset !== 0) timeSel.value = '19:00';
+  }
+
+  function setDay(n) {
+    dayOffset = n;
+    dayBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.day) === n)); });
+    fillTimes();
+  }
+  dayBtns.forEach(function (b) { b.addEventListener('click', function () { setDay(Number(b.dataset.day)); }); });
+
+  form.querySelectorAll('[data-step]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      pax = Math.min(30, Math.max(1, pax + Number(b.dataset.step)));
+      paxOut.textContent = pax;
+    });
+  });
+
+  function openBooking(source) {
+    if (!modal.hidden) return;
+    lastFocus = document.activeElement;
+    errEl.hidden = true;
+    setDay(dayOffset);
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { nameIn.focus(); }, 60);
+    try { sessionStorage.setItem('nj-pop-seen', '1'); } catch (e) {}
+    track('booking_popup_open', { source: source });
+  }
+  function closeBooking() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  fab.addEventListener('click', function () { openBooking('fab'); });
+  modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('[data-close]')) closeBooking(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeBooking(); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = T[current];
+    var name = nameIn.value.trim();
+    if (!name) { errEl.textContent = t.pErrName; errEl.hidden = false; nameIn.focus(); return; }
+    var d = dateFor(dayOffset);
+    var dayLabel = dayBtns[dayOffset].textContent + ' (' + d.toLocaleDateString(t.locale, { weekday: 'short', day: 'numeric', month: 'short' }) + ')';
+    var msg = t.waBook.replace('{name}', name).replace('{day}', dayLabel).replace('{time}', timeSel.value).replace('{pax}', pax);
+    var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    track('conversion', { send_to: CONV.wa });
+    track('booking_popup_send', { pax: pax, day_offset: dayOffset });
+    var w = window.open(url, '_blank', 'noopener');
+    if (!w) location.href = url;
+    closeBooking();
+  });
+
+  // Show the offer once per visit, a few seconds after the page settles.
   var params = new URLSearchParams(location.search);
+  var seen = false;
+  try { seen = sessionStorage.getItem('nj-pop-seen') === '1'; } catch (e) {}
+  if (!seen && !params.has('nopop')) setTimeout(function () { openBooking('auto'); }, 6000);
+
+  /* ---------- Motion: pop-ins, grill turning on scroll, eyes that follow you ---------- */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var popEls = document.querySelectorAll('.step, .dish, .loc, .quote p.display, .visit img, .final .brush, .sec-head h2');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('pop', 'in'); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    popEls.forEach(function (el) { io.observe(el); });
+  }
+
+  var plateImg = document.querySelector('.plate .photo img');
+  var eyes = document.querySelector('.quote svg');
+  var pupils = document.querySelector('.quote .pupils');
+  var pointer = null, ticking = false;
+
+  function aimEyes() {
+    if (!eyes || !pupils) return;
+    var r = eyes.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    var tx = pointer ? pointer.x : innerWidth / 2;
+    var ty = pointer ? pointer.y : innerHeight * 0.75;
+    var dx = tx - cx, dy = ty - cy, dist = Math.max(1, Math.hypot(dx, dy));
+    var k = Math.min(1, dist / 160);
+    pupils.style.animation = 'none';
+    pupils.style.transform = 'translate(' + (dx / dist * 9 * k).toFixed(1) + 'px,' + (dy / dist * 6 * k).toFixed(1) + 'px)';
+  }
+  function frame() {
+    ticking = false;
+    fab.hidden = scrollY < innerHeight * 0.7;
+    if (plateImg && !reduce) plateImg.style.setProperty('--rot', (scrollY * 0.12).toFixed(1) + 'deg');
+    if (pointer || !matchMedia('(hover: hover)').matches) aimEyes();
+  }
+  function request() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', request, { passive: true });
+  addEventListener('pointermove', function (e) { pointer = { x: e.clientX, y: e.clientY }; request(); }, { passive: true });
+  addEventListener('pointerdown', function (e) { pointer = { x: e.clientX, y: e.clientY }; request(); }, { passive: true });
+
   var saved = null;
   try { saved = localStorage.getItem('nj-lang'); } catch (e) {}
   var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
