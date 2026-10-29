@@ -256,16 +256,18 @@
   .nights { background: var(--navy); color: var(--butter); }
   .nights .kicker { color: var(--butter-2); }
   .night-cards { display: grid; gap: 22px; }
-  .night { position: relative; border: 3px solid var(--butter); border-radius: 28px; padding: 24px 22px; display: grid; gap: 10px; color: var(--navy); }
+  .night { position: relative; border: 3px solid var(--butter); border-radius: 28px; padding: 24px 22px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; color: var(--navy); }
   .night.tarot { background: var(--pink); box-shadow: 7px 7px 0 var(--butter-2); }
   .night.kimchi { background: var(--butter-2); box-shadow: 7px 7px 0 var(--red); }
-  .night svg { width: 56px; height: 56px; }
+  .night svg { width: 84px; height: 66px; }
   .night h3 { font-size: 42px; line-height: 1; }
+  .night p { margin: 0; }
   .night .rush { font-weight: 700; }
-  .night .btn { justify-self: start; margin-top: 4px; }
-  .night .when { justify-self: start; padding: 5px 12px; border-radius: 999px; background: var(--navy); color: var(--butter); font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+  /* Push both buttons to the card bottom so they line up side by side */
+  .night .btn { margin-top: auto; }
+  .night .when { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; background: var(--navy); color: var(--butter); font-weight: 700; font-size: 13px; line-height: 1.2; letter-spacing: .04em; text-transform: uppercase; }
 
-  /* Offer banner (shown on its own; the full pop-up opens only when tapped) */
+  /* Offer banner (what the pop-up shrinks into when closed) */
   .offer-toast {
     position: fixed; left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(84px + env(safe-area-inset-bottom, 0px)); z-index: 46;
     display: flex; align-items: center; gap: 10px; padding: 10px 8px 10px 12px; border-radius: 18px;
@@ -555,7 +557,7 @@
       </div>
       <div class="night-cards">
         <article class="night tarot">
-          <svg viewBox="0 0 56 56" fill="none" stroke="#1E2340" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="6" width="32" height="44" rx="5" fill="#FFF1C9" transform="rotate(-8 28 28)"/><path d="M28 17l3 7 7 .6-5.4 4.6 1.7 7L28 32.4l-6.3 3.8 1.7-7L18 24.6l7-.6z" fill="#FFE08A"/></svg>
+          <svg viewBox="0 0 80 64" fill="none" stroke="#1E2340" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="26" y="12" width="28" height="40" rx="4" fill="#D7261E" transform="rotate(-22 40 62)"/><circle cx="40" cy="32" r="3" fill="#FFF1C9" stroke-width="2" transform="rotate(-22 40 62)"/><rect x="26" y="12" width="28" height="40" rx="4" fill="#FFE08A" transform="rotate(22 40 62)"/><path d="M40 27l1.5 3.5L45 32l-3.5 1.5L40 37l-1.5-3.5L35 32l3.5-1.5z" stroke-width="2" fill="#FFF1C9" transform="rotate(22 40 62)"/><rect x="26" y="6" width="28" height="42" rx="4" fill="#FFF1C9"/><path d="M43 14.6A8 8 0 1 0 43 29.4A7.5 7.5 0 0 1 43 14.6z" fill="#FFE08A" stroke-width="2.5"/><path d="M47 33l1.4 3.1L51.5 37.5l-3.1 1.4L47 42l-1.4-3.1L42.5 37.5l3.1-1.4z" fill="#FF9FB2" stroke-width="2"/><circle cx="33" cy="40" r="1.6" fill="#1E2340" stroke="none"/></svg>
           <span class="when" data-i18n="tarotWhen">Every evening · 6–10 PM</span>
           <h3 class="display" data-i18n="tarotT">Free tarot reading</h3>
           <p data-i18n="tarotD">Our regulars' little secret, now out. Ask about love, luck, or whether to order more meat.</p>
@@ -563,10 +565,11 @@
           <a class="btn btn-red" href="#" data-wa data-conv="wa" target="_blank" rel="noopener" data-i18n="tarotBtn">Book a tarot night</a>
         </article>
         <article class="night kimchi">
-          <svg viewBox="0 0 56 56" fill="none" stroke="#1E2340" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><path d="M10 34c0-12 8-24 18-24s18 12 18 24c0 7-8 12-18 12s-18-5-18-12z" fill="#D9F2E1"/><path d="M28 12v32M18 20c4 6 6 14 6 24M38 20c-4 6-6 14-6 24" /><path d="M14 38c6 4 22 4 28 0" stroke="#D7261E" stroke-width="4" stroke-linecap="round"/></svg>
-          <span class="when" data-i18n="kimchiWhen">Now and then · secret dates</span>
+          <svg viewBox="0 0 80 64" fill="none" stroke="#1E2340" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M34 14c-2-6 2-10 6-10s8 4 6 10" fill="#D9F2E1"/><path d="M40 6v8" stroke-width="2"/><path d="M24 20h32c6 6 8 13 8 20 0 10-10 18-24 18S16 50 16 40c0-7 2-14 8-20z" fill="#E39B6A"/><rect x="22" y="14" width="36" height="8" rx="4" fill="#D7261E"/><circle cx="32" cy="37" r="2.4" fill="#1E2340" stroke="none"/><circle cx="48" cy="37" r="2.4" fill="#1E2340" stroke="none"/><path d="M36 42q4 4 8 0" stroke-width="2.5"/><ellipse cx="26" cy="43" rx="3.5" ry="2.2" fill="#FF9FB2" stroke="none"/><ellipse cx="54" cy="43" rx="3.5" ry="2.2" fill="#FF9FB2" stroke="none"/><path d="M68 12c-2-3-6-1-4 2l4 4 4-4c2-3-2-5-4-2z" fill="#D7261E" stroke-width="2"/><path d="M10 22l1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" fill="#FFF1C9" stroke-width="1.8"/></svg>
+          <span class="when" data-i18n="kimchiWhen">🤫 Now and then · secret dates 🌶️</span>
           <h3 class="display" data-i18n="kimchiT">Secret kimchi nights</h3>
-          <p data-i18n="kimchiD">Every now and then we make kimchi together with guests. The dates are a secret: ask us, or watch @noonajib.id.</p>
+          <p data-i18n="kimchiD">Every now and then we make kimchi together with guests. The dates are top secret, so ask us or keep an eye on our Instagram.</p>
+          <a class="btn btn-navy" href="https://www.instagram.com/noonajib.id/" target="_blank" rel="noopener" data-i18n="kimchiBtn">Watch @noonajib.id 👀</a>
         </article>
       </div>
     </div>
@@ -763,8 +766,9 @@
       nightsTitle: "Noona's nights", tarotWhen: 'Every evening · 6–10 PM', tarotT: 'Free tarot reading',
       tarotD: "Our regulars' little secret, now out. Ask about love, luck, or whether to order more meat.",
       tarotRush: 'Free for every guest. Weekends are always full, so book ahead.', tarotBtn: 'Book a tarot night',
-      kimchiWhen: 'Now and then · secret dates', kimchiT: 'Secret kimchi nights',
-      kimchiD: 'Every now and then we make kimchi together with guests. The dates are a secret: ask us, or watch @noonajib.id.',
+      kimchiWhen: '🤫 Now and then · secret dates 🌶️', kimchiT: 'Secret kimchi nights',
+      kimchiD: 'Every now and then we make kimchi together with guests. The dates are top secret, so ask us or keep an eye on our Instagram.',
+      kimchiBtn: 'Watch @noonajib.id 👀',
       toastText: 'Free gyeran mari when you book on WhatsApp', toastBtn: 'See offer',
       locale: 'en-GB'
     },
@@ -804,8 +808,9 @@
       nightsTitle: '누나의 밤', tarotWhen: '매일 저녁 · 6–10시', tarotT: '무료 타로 리딩',
       tarotD: '단골손님만 알던 비밀, 이제 공개해요. 연애운, 금전운, 고기 더 시킬지까지 물어보세요.',
       tarotRush: '모든 손님 무료예요. 주말은 늘 만석이니 미리 예약하세요.', tarotBtn: '타로 나이트 예약하기',
-      kimchiWhen: '가끔 · 날짜는 비밀', kimchiT: '비밀 김치 담그기',
-      kimchiD: '가끔 손님들과 함께 김치를 담가요. 날짜는 비밀! 직접 물어보거나 @noonajib.id를 확인하세요.',
+      kimchiWhen: '🤫 가끔 · 날짜는 비밀 🌶️', kimchiT: '비밀 김치 담그기',
+      kimchiD: '가끔 손님들과 함께 김치를 담가요. 날짜는 일급비밀! 직접 물어보거나 인스타그램을 지켜봐 주세요.',
+      kimchiBtn: '@noonajib.id 확인하기 👀',
       toastText: '왓츠앱으로 예약하면 계란말이 무료', toastBtn: '보기',
       locale: 'ko-KR'
     },
@@ -845,8 +850,9 @@
       nightsTitle: 'Malam di rumah Noona', tarotWhen: 'Tiap malam · 18.00–22.00', tarotT: 'Baca tarot gratis',
       tarotD: 'Rahasia kecil para pelanggan setia, sekarang kami buka. Tanya soal cinta, rezeki, atau perlu nambah daging lagi.',
       tarotRush: 'Gratis untuk semua tamu. Weekend selalu penuh, jadi booking dulu ya.', tarotBtn: 'Booking malam tarot',
-      kimchiWhen: 'Sesekali · tanggal rahasia', kimchiT: 'Malam rahasia bikin kimchi',
-      kimchiD: 'Sesekali kami bikin kimchi bareng tamu. Tanggalnya rahasia: tanya kami atau pantau @noonajib.id.',
+      kimchiWhen: '🤫 Sesekali · tanggal rahasia 🌶️', kimchiT: 'Malam rahasia bikin kimchi',
+      kimchiD: 'Sesekali kami bikin kimchi bareng tamu. Tanggalnya super rahasia, jadi tanya kami atau pantau Instagram kami.',
+      kimchiBtn: 'Pantau @noonajib.id 👀',
       toastText: 'Booking via WhatsApp, gyeran mari gratis', toastBtn: 'Lihat',
       locale: 'id-ID'
     }
@@ -905,7 +911,7 @@
   var errEl = document.getElementById('b-err');
   var fab = document.getElementById('egg-fab');
   var dayBtns = Array.prototype.slice.call(form.querySelectorAll('[data-day]'));
-  var dayOffset = 0, pax = 2, lastFocus = null;
+  var dayOffset = 0, pax = 2, lastFocus = null, booked = false;
   var OPEN_MIN = 12 * 60, LAST_SLOT = 21 * 60 + 30;
 
   function dateFor(offset) { var d = new Date(); d.setDate(d.getDate() + offset); return d; }
@@ -949,8 +955,10 @@
     errEl.hidden = true;
     setDay(dayOffset);
     modal.hidden = false;
+    toast.hidden = true; fab.hidden = true;
     document.body.style.overflow = 'hidden';
-    setTimeout(function () { nameIn.focus(); }, 60);
+    // Don't pop the keyboard up over an offer the visitor didn't ask for
+    if (source !== 'auto' && source !== 'bottom') setTimeout(function () { nameIn.focus(); }, 60);
     try { sessionStorage.setItem('nj-pop-seen', '1'); } catch (e) {}
     track('booking_popup_open', { source: source });
   }
@@ -958,6 +966,8 @@
     modal.hidden = true;
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
+    // Closing never fully hides the offer: it shrinks into the bottom banner
+    if (!booked) showToast();
   }
   fab.addEventListener('click', function () { openBooking('fab'); });
   modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('[data-close]')) closeBooking(); });
@@ -974,24 +984,43 @@
     var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
     track('conversion', { send_to: CONV.wa });
     track('booking_popup_send', { pax: pax, day_offset: dayOffset });
+    booked = true;
+    try { sessionStorage.setItem('nj-booked', '1'); } catch (e) {}
     var w = window.open(url, '_blank', 'noopener');
     if (!w) location.href = url;
     closeBooking();
   });
 
-  // A few seconds in, offer the deal with a small banner; the full pop-up opens only when tapped.
+  // Offer flow: the pop-up opens 3s in; closing it leaves the bottom banner, closing the banner
+  // leaves the egg button, so the offer never fully disappears. Reaching the page bottom
+  // re-opens the pop-up 5s later (up to MAX_REPOP times per visit). Stops once they've booked.
   var toast = document.getElementById('offer-toast');
-  function hideToast() { toast.hidden = true; try { sessionStorage.setItem('nj-pop-seen', '1'); } catch (e) {} }
+  var MAX_REPOP = 1, repops = 0, bottomTimer = null, minimized = false;
+  function showToast() { toast.hidden = false; fab.hidden = true; minimized = false; }
+  function hideToast() { toast.hidden = true; minimized = true; request(); }
   document.getElementById('toast-see').addEventListener('click', function () { hideToast(); openBooking('banner'); });
   document.getElementById('toast-x').addEventListener('click', hideToast);
   var params = new URLSearchParams(location.search);
   var seen = false;
-  try { seen = sessionStorage.getItem('nj-pop-seen') === '1'; } catch (e) {}
-  if (!seen && !params.has('nopop')) setTimeout(function () {
+  try { seen = sessionStorage.getItem('nj-pop-seen') === '1'; booked = sessionStorage.getItem('nj-booked') === '1'; } catch (e) {}
+  var autoPop = !params.has('nopop') && !booked;
+  if (autoPop) setTimeout(function () {
     if (!modal.hidden) return;
-    toast.hidden = false; fab.hidden = true;
-    track('offer_banner_shown');
-  }, 6000);
+    if (seen) { showToast(); track('offer_banner_shown'); }
+    else openBooking('auto');
+  }, 3000);
+  function checkBottom() {
+    if (!autoPop || booked || repops >= MAX_REPOP) return;
+    var atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 80;
+    if (atBottom && !bottomTimer) {
+      bottomTimer = setTimeout(function () {
+        bottomTimer = null;
+        if (!modal.hidden || booked) return;
+        repops++;
+        openBooking('bottom');
+      }, 5000);
+    } else if (!atBottom && bottomTimer) { clearTimeout(bottomTimer); bottomTimer = null; }
+  }
 
   /* ---------- Motion: pop-ins, grill turning on scroll, eyes that follow you ---------- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1023,7 +1052,8 @@
   }
   function frame() {
     ticking = false;
-    fab.hidden = !toast.hidden || scrollY < innerHeight * 0.7;
+    fab.hidden = !modal.hidden || !toast.hidden || (!minimized && scrollY < innerHeight * 0.7);
+    checkBottom();
     if (plateImg && !reduce) plateImg.style.setProperty('--rot', (scrollY * 0.12).toFixed(1) + 'deg');
     if (pointer || !matchMedia('(hover: hover)').matches) aimEyes();
   }
