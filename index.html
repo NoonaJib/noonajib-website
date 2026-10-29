@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoonaJib — Busan-Style Korean BBQ in Canggu, Bali</title>
+<meta name="description" content="Authentic Busan-style Korean BBQ in Canggu, Bali. Charcoal-grilled samgyupsal, chadolbaegi and marinated meats with banchan made fresh daily. Open every day 12 PM – 10 PM. Book via WhatsApp.">
+<link rel="canonical" href="https://noonajib.com/">
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="NoonaJib — Busan-Style Korean BBQ in Bali">
+<meta property="og:description" content="Charcoal-grilled Korean BBQ and banchan made fresh daily. Canggu now open · Legian opening 3 December.">
+<meta property="og:image" content="https://noonajib.com/img/og.jpg">
+<meta property="og:url" content="https://noonajib.com/">
+<meta name="theme-color" content="#16110e">
+<link rel="preload" as="image" href="img/hero-tall.webp" media="(max-width: 760px)">
+<link rel="preload" as="image" href="img/hero-wide.webp" media="(min-width: 761px)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11029622258"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-11029622258');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "NoonaJib Korean Grill & Chill — Babakan, Canggu",
+  "url": "https://noonajib.com/",
+  "image": "https://noonajib.com/img/og.jpg",
+  "servesCuisine": ["Korean", "Korean BBQ"],
+  "telephone": "+62 877-3552-5399",
+  "acceptsReservations": "True",
+  "menu": "https://www.opaper.app/noonajib",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Raya Babakan No. 114",
+    "addressLocality": "Canggu",
+    "addressRegion": "Bali",
+    "addressCountry": "ID"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": -8.621708, "longitude": 115.154411 },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "12:00", "closes": "22:00"
+  }],
+  "sameAs": ["https://www.instagram.com/noonajib.id/"]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #16110e;
+    --bg-2: #211915;
+    --card: #2a201b;
+    --line: #3a2d26;
+    --text: #f6ede4;
+    --muted: #bfae9f;
+    --ember: #e2412b;
+    --ember-2: #ff6a3d;
+    --gold: #f2b544;
+    --wa: #25d366;
+    --radius: 18px;
+    --wrap: 1120px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", "Noto Sans KR", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 76px;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  .wrap { width: min(var(--wrap), 100% - 32px); margin-inline: auto; }
+  .display { font-family: "Black Han Sans", Inter, sans-serif; font-weight: 400; letter-spacing: .01em; line-height: 1.08; }
+  :lang(ko) h1, :lang(ko) h2, :lang(ko) h3, :lang(ko) p, :lang(ko) .soon-date { word-break: keep-all; }
+
+  /* Header */
+  header {
+    position: absolute; inset: 0 0 auto 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px max(16px, calc((100% - var(--wrap)) / 2));
+  }
+  .logo { font-family: "Black Han Sans", sans-serif; font-size: 26px; text-decoration: none; }
+  .logo span { color: var(--ember-2); }
+  .lang { display: flex; gap: 4px; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.15); border-radius: 999px; padding: 4px; backdrop-filter: blur(6px); }
+  .lang button {
+    background: none; border: 0; color: var(--muted); font: 600 13px Inter, sans-serif;
+    padding: 6px 11px; border-radius: 999px; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+
+  /* Hero */
+  .hero { position: relative; min-height: 92svh; display: flex; align-items: flex-end; overflow: hidden; }
+  .hero picture, .hero picture img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(22,17,14,.55) 0%, rgba(22,17,14,.15) 35%, rgba(22,17,14,.85) 72%, var(--bg) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 2; padding: 120px 0 56px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 4px rgba(37,211,102,.25); }
+  .hero h1 { font-size: clamp(40px, 8vw, 84px); max-width: 14ch; }
+  .hero h1 em { font-style: normal; color: var(--ember-2); }
+  .hero p.lead { font-size: clamp(16px, 2.2vw, 20px); color: #eadccf; max-width: 46ch; margin: 16px 0 28px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 54px; padding: 0 24px; border-radius: 999px;
+    font-weight: 800; font-size: 16px; text-decoration: none; border: 0; cursor: pointer;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-wa { background: var(--wa); color: #06260f; }
+  .btn-ember { background: var(--ember); color: #fff; }
+  .btn-ghost { background: rgba(255,255,255,.08); color: var(--text); border: 1px solid rgba(255,255,255,.22); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 26px; color: #e3d4c6; font-size: 14px; font-weight: 600; }
+  .chips li { list-style: none; display: flex; align-items: center; gap: 7px; }
+  .chips li::before { content: "✓"; color: var(--gold); font-weight: 800; }
+
+  section { padding: 72px 0; }
+  .sec-head { margin-bottom: 32px; }
+  .sec-head .kicker { color: var(--ember-2); font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+  .sec-head h2 { font-size: clamp(30px, 5vw, 48px); margin-top: 6px; }
+  .sec-head p { color: var(--muted); max-width: 60ch; margin-top: 10px; }
+
+  /* Why */
+  .why { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+  .why img { border-radius: var(--radius); aspect-ratio: 3/2; object-fit: cover; width: 100%; }
+  .points { display: grid; gap: 18px; margin-top: 8px; }
+  .point { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+  .point .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--card); border: 1px solid var(--line); font-size: 20px; }
+  .point h3 { font-size: 17px; }
+  .point p { color: var(--muted); font-size: 15px; }
+
+  /* Menu */
+  .menu-sec { background: var(--bg-2); }
+  .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .dish { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/5; background: var(--card); }
+  .dish img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .dish:hover img { transform: scale(1.04); }
+  .dish figcaption {
+    position: absolute; inset: auto 0 0 0; padding: 40px 16px 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,.85));
+  }
+  .dish .ko { font-size: 13px; color: var(--gold); font-weight: 600; }
+  .dish h3 { font-size: 18px; line-height: 1.25; }
+  .dish p { font-size: 13px; color: #d8c8ba; margin-top: 2px; }
+  .menu-cta { display: flex; justify-content: center; margin-top: 32px; }
+
+  /* Locations */
+  .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .loc { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .loc .badge { align-self: flex-start; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+  .badge-open { background: rgba(37,211,102,.14); color: var(--wa); }
+  .badge-soon { background: rgba(242,181,68,.15); color: var(--gold); }
+  .loc h3 { font-size: 28px; }
+  .loc dl { display: grid; grid-template-columns: 22px 1fr; gap: 8px 10px; color: var(--muted); font-size: 15px; }
+  .loc dt { color: var(--text); }
+  .loc .ctas { margin-top: auto; padding-top: 8px; }
+  .loc .btn { min-height: 48px; padding: 0 18px; font-size: 15px; flex: 1 1 auto; }
+  .soon-date { font-family: "Black Han Sans", sans-serif; font-size: 40px; color: var(--gold); line-height: 1; }
+
+  /* Gallery strip */
+  .strip { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; }
+  .strip img { border-radius: var(--radius); width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/5; }
+  .strip img:first-child { aspect-ratio: auto; }
+
+  /* Final CTA */
+  .final { text-align: center; padding: 80px 0 96px; }
+  .final h2 { font-size: clamp(32px, 6vw, 56px); }
+  .final p { color: var(--muted); margin: 12px auto 28px; max-width: 46ch; }
+  .final .ctas { justify-content: center; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+  footer a { text-decoration: none; color: var(--text); }
+
+  /* Sticky mobile bar */
+  .sticky {
+    position: fixed; inset: auto 0 0 0; z-index: 50;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(22,17,14,.94); border-top: 1px solid var(--line); backdrop-filter: blur(8px);
+  }
+  .sticky .btn { min-height: 50px; padding: 0 12px; font-size: 15px; }
+
+  @media (min-width: 761px) {
+    .hero::after {
+      background:
+        linear-gradient(90deg, rgba(22,17,14,.88) 0%, rgba(22,17,14,.55) 45%, rgba(22,17,14,0) 75%),
+        linear-gradient(180deg, rgba(22,17,14,.5) 0%, rgba(22,17,14,0) 30%, rgba(22,17,14,.6) 80%, var(--bg) 100%);
+    }
+  }
+  @media (min-width: 900px) {
+    body { padding-bottom: 0; }
+    .sticky { display: none; }
+  }
+  @media (max-width: 900px) {
+    .why { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .loc-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    section { padding: 56px 0; }
+    .hero .ctas .btn { flex: 1 1 100%; }
+    .strip { grid-template-columns: 1fr 1fr; }
+    .strip img:first-child { grid-column: 1 / -1; aspect-ratio: 3/2; }
+    .loc { padding: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Noona<span>Jib</span></a>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+    <button type="button" data-lang="id" aria-pressed="false">ID</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <picture>
+      <source media="(max-width: 760px)" srcset="img/hero-tall.webp">
+      <img src="img/hero-wide.webp" alt="Samgyupsal grilling over charcoal at NoonaJib, surrounded by banchan" fetchpriority="high">
+    </picture>
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="eyebrow">Open daily · 12 PM – 10 PM · Canggu</div>
+      <h1 class="display" data-i18n-html="h1">Busan-style <em>Korean BBQ</em> in Bali</h1>
+      <p class="lead" data-i18n="lead">Real charcoal, thick-cut pork belly and banchan made fresh every day — the same taste you had in Korea.</p>
+      <div class="ctas">
+        <a class="btn btn-wa" href="#" data-wa data-conv="wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.1.1.7-.1 1.4Z"/></svg>
+          <span data-i18n="ctaBook">Book a table on WhatsApp</span>
+        </a>
+        <a class="btn btn-ghost" href="#" data-maps="babakan" data-conv="dir" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span data-i18n="ctaDir">Get directions</span>
+        </a>
+      </div>
+      <ul class="chips">
+        <li data-i18n="chip1">Real charcoal grill</li>
+        <li data-i18n="chip2">Free banchan refills</li>
+        <li data-i18n="chip3">Air-conditioned</li>
+        <li data-i18n="chip4">Groups welcome</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap why">
+      <img src="img/grill.webp" alt="Pork belly on the charcoal grill with tteokbokki and banchan" loading="lazy" width="1600" height="1067">
+      <div>
+        <div class="sec-head">
+          <div class="kicker" data-i18n="whyKicker">Why NoonaJib</div>
+          <h2 class="display" data-i18n="whyTitle">Home-style taste from Busan</h2>
+        </div>
+        <div class="points">
+          <div class="point"><div class="ic">🔥</div><div><h3 data-i18n="p1t">Grilled on real charcoal</h3><p data-i18n="p1d">Smoky, crispy edges you can't get from a gas grill.</p></div></div>
+          <div class="point"><div class="ic">🥬</div><div><h3 data-i18n="p2t">Banchan made fresh daily</h3><p data-i18n="p2d">Kimchi, japchae and side dishes made in our own kitchen — refills are free.</p></div></div>
+          <div class="point"><div class="ic">🍖</div><div><h3 data-i18n="p3t">Thick, fresh cuts</h3><p data-i18n="p3d">Samgyupsal, chadolbaegi and marinated meats, prepared the Busan way.</p></div></div>
+          <div class="point"><div class="ic">👨‍👩‍👧‍👦</div><div><h3 data-i18n="p4t">Made for sharing</h3><p data-i18n="p4d">Lunch or dinner, couples to big groups — we'll set up the grill for you.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-sec" id="menu">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker" data-i18n="menuKicker">Signature menu</div>
+        <h2 class="display" data-i18n="menuTitle">What everyone orders</h2>
+      </div>
+      <div class="menu-grid">
+        <figure class="dish"><img src="img/samgyupsal.webp" alt="Thick-cut samgyupsal pork belly" loading="lazy" width="800" height="1000"><figcaption><div class="ko">삼겹살</div><h3>Samgyupsal</h3><p data-i18n="d1">Thick-cut pork belly</p></figcaption></figure>
+        <figure class="dish"><img src="img/chadolbaegi.webp" alt="Thinly sliced chadolbaegi beef brisket" loading="lazy" width="800" height="1000"><figcaption><div class="ko">차돌박이</div><h3>Chadolbaegi</h3><p data-i18n="d2">Thin-sliced beef brisket</p></figcaption></figure>
+        <figure class="dish"><img src="img/galbi.webp" alt="Marinated Korean BBQ meat" loading="lazy" width="800" height="1000"><figcaption><div class="ko">양념구이</div><h3 data-i18n="d3t">Marinated BBQ</h3><p data-i18n="d3">Sweet-savory house marinade</p></figcaption></figure>
+        <figure class="dish"><img src="img/beef.webp" alt="Premium beef cuts for the grill" loading="lazy" width="800" height="1000"><figcaption><div class="ko">소고기</div><h3 data-i18n="d4t">Beef cuts</h3><p data-i18n="d4">Fresh cuts for the grill</p></figcaption></figure>
+        <figure class="dish"><img src="img/tteokbokki.webp" alt="Tteokbokki spicy rice cakes" loading="lazy" width="800" height="1000"><figcaption><div class="ko">떡볶이</div><h3>Tteokbokki</h3><p data-i18n="d5">Spicy rice cakes</p></figcaption></figure>
+        <figure class="dish"><img src="img/japchae.webp" alt="Japchae glass noodles" loading="lazy" width="800" height="1000"><figcaption><div class="ko">잡채</div><h3>Japchae</h3><p data-i18n="d6">Stir-fried glass noodles</p></figcaption></figure>
+        <figure class="dish"><img src="img/banchan.webp" alt="Assorted Korean banchan side dishes" loading="lazy" width="800" height="1000"><figcaption><div class="ko">반찬</div><h3>Banchan</h3><p data-i18n="d7">Free refills, made daily</p></figcaption></figure>
+        <figure class="dish"><img src="img/spread.webp" alt="Full NoonaJib Korean BBQ table spread" loading="lazy" width="1600" height="1067"><figcaption><div class="ko">한상 차림</div><h3 data-i18n="d8t">The full table</h3><p data-i18n="d8">Grill, meats, banchan & more</p></figcaption></figure>
+      </div>
+      <div class="menu-cta">
+        <a class="btn btn-ember" href="https://www.opaper.app/noonajib" target="_blank" rel="noopener" data-conv="menu" data-i18n="ctaMenu">See full menu & prices</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="locations">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker" data-i18n="locKicker">Locations</div>
+        <h2 class="display" data-i18n="locTitle">Find us in Bali</h2>
+      </div>
+      <div class="loc-grid">
+        <article class="loc">
+          <span class="badge badge-open" data-i18n="open">Open now · every day</span>
+          <h3 class="display">Babakan, Canggu</h3>
+          <dl>
+            <dt>📍</dt><dd>Jl. Raya Babakan No. 114, Canggu, Badung, Bali</dd>
+            <dt>🕛</dt><dd data-i18n="hours">Every day, 12 PM – 10 PM</dd>
+            <dt>📞</dt><dd>+62 877-3552-5399</dd>
+          </dl>
+          <div class="ctas">
+            <a class="btn btn-wa" href="#" data-wa data-conv="wa" target="_blank" rel="noopener" data-i18n="ctaBookShort">Book on WhatsApp</a>
+            <a class="btn btn-ghost" href="#" data-maps="babakan" data-conv="dir" target="_blank" rel="noopener" data-i18n="ctaDir">Get directions</a>
+            <a class="btn btn-ghost" href="tel:+6287735525399" data-conv="call" data-i18n="ctaCall">Call</a>
+          </div>
+        </article>
+        <article class="loc">
+          <span class="badge badge-soon" data-i18n="soon">Coming soon</span>
+          <h3 class="display">Legian</h3>
+          <div class="soon-date" data-i18n="soonDate">Grand opening · 3 Dec</div>
+          <dl>
+            <dt>📍</dt><dd>Jl. Legian No. 486B, Legian, Kuta, Badung, Bali</dd>
+            <dt>🕛</dt><dd data-i18n="hours">Every day, 12 PM – 10 PM</dd>
+          </dl>
+          <div class="ctas">
+            <a class="btn btn-ghost" href="https://www.instagram.com/noonajib.id/" target="_blank" rel="noopener" data-i18n="ctaFollow">Follow for opening news</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2 class="display" data-i18n="finalTitle">Hungry? Your grill is waiting.</h2>
+      <p data-i18n="finalText">Message us on WhatsApp to book a table — we reply fast.</p>
+      <div class="ctas">
+        <a class="btn btn-wa" href="#" data-wa data-conv="wa" target="_blank" rel="noopener" data-i18n="ctaBook">Book a table on WhatsApp</a>
+        <a class="btn btn-ghost" href="#" data-maps="babakan" data-conv="dir" target="_blank" rel="noopener" data-i18n="ctaDir">Get directions</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© NoonaJib Korean Grill & Chill · Bali</span>
+    <span><a href="https://www.instagram.com/noonajib.id/" target="_blank" rel="noopener">Instagram @noonajib.id</a> · <a href="tel:+6287735525399" data-conv="call">+62 877-3552-5399</a></span>
+  </div>
+</footer>
+
+<nav class="sticky" aria-label="Quick actions">
+  <a class="btn btn-wa" href="#" data-wa data-conv="wa" target="_blank" rel="noopener" data-i18n="ctaBookShort">Book on WhatsApp</a>
+  <a class="btn btn-ghost" href="#" data-maps="babakan" data-conv="dir" target="_blank" rel="noopener" data-i18n="ctaDir">Get directions</a>
+</nav>
+
+<script>
+(function () {
+  var WA_NUMBER = '6287735525399';
+  var MAPS = {
+    babakan: 'https://www.google.com/maps/search/?api=1&query=Noona+Jib+Korean+Grill+%26+Chill+Babakan+Canggu'
+  };
+  var CONV = {
+    wa: 'AW-11029622258/rGnGCOuA260dEPLbqosp',
+    dir: 'AW-11029622258/IsYLCLrx460dEPLbqosp',
+    call: 'AW-11029622258/rEkZCL3x460dEPLbqosp'
+  };
+
+  var T = {
+    en: {
+      eyebrow: 'Open daily · 12 PM – 10 PM · Canggu',
+      h1: 'Busan-style <em>Korean BBQ</em> in Bali',
+      lead: 'Real charcoal, thick-cut pork belly and banchan made fresh every day — the same taste you had in Korea.',
+      ctaBook: 'Book a table on WhatsApp', ctaBookShort: 'Book on WhatsApp', ctaDir: 'Get directions', ctaCall: 'Call',
+      chip1: 'Real charcoal grill', chip2: 'Free banchan refills', chip3: 'Air-conditioned', chip4: 'Groups welcome',
+      whyKicker: 'Why NoonaJib', whyTitle: 'Home-style taste from Busan',
+      p1t: 'Grilled on real charcoal', p1d: "Smoky, crispy edges you can't get from a gas grill.",
+      p2t: 'Banchan made fresh daily', p2d: 'Kimchi, japchae and side dishes made in our own kitchen — refills are free.',
+      p3t: 'Thick, fresh cuts', p3d: 'Samgyupsal, chadolbaegi and marinated meats, prepared the Busan way.',
+      p4t: 'Made for sharing', p4d: "Lunch or dinner, couples to big groups — we'll set up the grill for you.",
+      menuKicker: 'Signature menu', menuTitle: 'What everyone orders',
+      d1: 'Thick-cut pork belly', d2: 'Thin-sliced beef brisket', d3t: 'Marinated BBQ', d3: 'Sweet-savory house marinade',
+      d4t: 'Beef cuts', d4: 'Fresh cuts for the grill', d5: 'Spicy rice cakes', d6: 'Stir-fried glass noodles',
+      d7: 'Free refills, made daily', d8t: 'The full table', d8: 'Grill, meats, banchan & more',
+      ctaMenu: 'See full menu & prices',
+      locKicker: 'Locations', locTitle: 'Find us in Bali',
+      open: 'Open now · every day', hours: 'Every day, 12 PM – 10 PM',
+      soon: 'Coming soon', soonDate: 'Grand opening · 3 Dec', ctaFollow: 'Follow for opening news',
+      finalTitle: 'Hungry? Your grill is waiting.', finalText: 'Message us on WhatsApp to book a table — we reply fast.',
+      waMsg: "Hi NoonaJib! I'd like to book a table at Babakan, Canggu.\nDate: \nTime: \nNumber of people: "
+    },
+    ko: {
+      eyebrow: '매일 영업 · 12:00 – 22:00 · 짱구',
+      h1: '발리에서 만나는 <em>부산식 고기집</em>',
+      lead: '참숯에 굽는 두툼한 삼겹살과 매일 직접 만드는 반찬. 한국에서 먹던 그 맛 그대로.',
+      ctaBook: '왓츠앱으로 예약하기', ctaBookShort: '왓츠앱 예약', ctaDir: '길찾기', ctaCall: '전화',
+      chip1: '참숯 직화구이', chip2: '반찬 무한 리필', chip3: '에어컨 완비', chip4: '단체석 가능',
+      whyKicker: '누나집을 찾는 이유', whyTitle: '부산 집밥 손맛 그대로',
+      p1t: '진짜 참숯 직화', p1d: '가스불로는 낼 수 없는 불향과 바삭함.',
+      p2t: '매일 만드는 반찬', p2d: '김치, 잡채, 밑반찬까지 모두 직접 조리. 리필은 무료입니다.',
+      p3t: '두툼하고 신선한 고기', p3d: '삼겹살, 차돌박이, 양념구이를 부산식으로.',
+      p4t: '함께 먹기 좋은 곳', p4d: '점심도 저녁도, 커플부터 단체까지 — 불판은 저희가 준비합니다.',
+      menuKicker: '대표 메뉴', menuTitle: '모두가 주문하는 메뉴',
+      d1: '두툼한 통삼겹', d2: '얇게 썬 우삼겹', d3t: '양념구이', d3: '달콤 짭조름한 수제 양념',
+      d4t: '소고기', d4: '신선한 구이용 소고기', d5: '매콤한 떡볶이', d6: '당면 잡채',
+      d7: '무료 리필, 매일 조리', d8t: '한상 차림', d8: '고기, 반찬, 그리고 더',
+      ctaMenu: '전체 메뉴 & 가격 보기',
+      locKicker: '매장 안내', locTitle: '발리 매장 위치',
+      open: '영업 중 · 연중무휴', hours: '매일 12:00 – 22:00',
+      soon: '오픈 예정', soonDate: '그랜드 오픈 · 12월 3일', ctaFollow: '오픈 소식 받기',
+      finalTitle: '배고프신가요? 불판이 기다립니다.', finalText: '왓츠앱으로 메시지 주시면 빠르게 예약 도와드려요.',
+      waMsg: '안녕하세요 누나집! 바바깐(짱구) 매장 예약하고 싶어요.\n날짜: \n시간: \n인원: '
+    },
+    id: {
+      eyebrow: 'Buka setiap hari · 12.00 – 22.00 · Canggu',
+      h1: '<em>Korean BBQ</em> ala Busan di Bali',
+      lead: 'Arang asli, samgyupsal tebal, dan banchan yang dibuat segar setiap hari — rasa Korea yang sebenarnya.',
+      ctaBook: 'Reservasi via WhatsApp', ctaBookShort: 'Reservasi WhatsApp', ctaDir: 'Petunjuk arah', ctaCall: 'Telepon',
+      chip1: 'Panggang arang asli', chip2: 'Refill banchan gratis', chip3: 'Ber-AC', chip4: 'Cocok untuk rombongan',
+      whyKicker: 'Kenapa NoonaJib', whyTitle: 'Rasa rumahan khas Busan',
+      p1t: 'Dipanggang di arang asli', p1d: 'Aroma smoky dan pinggiran renyah yang tidak bisa didapat dari kompor gas.',
+      p2t: 'Banchan dibuat setiap hari', p2d: 'Kimchi, japchae, dan lauk pendamping buatan dapur sendiri — refill gratis.',
+      p3t: 'Daging tebal & segar', p3d: 'Samgyupsal, chadolbaegi, dan daging bumbu ala Busan.',
+      p4t: 'Seru untuk ramai-ramai', p4d: 'Makan siang atau malam, berdua atau rombongan — panggangan kami siapkan.',
+      menuKicker: 'Menu andalan', menuTitle: 'Yang paling sering dipesan',
+      d1: 'Pork belly potong tebal', d2: 'Beef brisket iris tipis', d3t: 'BBQ bumbu', d3: 'Bumbu racikan sendiri',
+      d4t: 'Potongan sapi', d4: 'Daging sapi segar untuk dipanggang', d5: 'Kue beras pedas', d6: 'Mi kaca tumis',
+      d7: 'Refill gratis, dibuat setiap hari', d8t: 'Satu meja lengkap', d8: 'Daging, banchan & lainnya',
+      ctaMenu: 'Lihat menu & harga lengkap',
+      locKicker: 'Lokasi', locTitle: 'Temukan kami di Bali',
+      open: 'Buka · setiap hari', hours: 'Setiap hari, 12.00 – 22.00',
+      soon: 'Segera hadir', soonDate: 'Grand opening · 3 Des', ctaFollow: 'Ikuti info pembukaan',
+      finalTitle: 'Lapar? Panggangan sudah siap.', finalText: 'Kirim pesan WhatsApp untuk reservasi — kami balas cepat.',
+      waMsg: 'Halo NoonaJib! Saya mau reservasi meja di Babakan, Canggu.\nTanggal: \nJam: \nJumlah orang: '
+    }
+  };
+
+  var current = 'en';
+
+  function applyLang(lang) {
+    if (!T[lang]) lang = 'en';
+    current = lang;
+    var t = T[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n')];
+      if (v != null) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n-html')];
+      if (v != null) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-wa]').forEach(function (el) {
+      el.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(t.waMsg);
+    });
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
+    try { localStorage.setItem('nj-lang', lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('[data-maps]').forEach(function (el) {
+    el.href = MAPS[el.getAttribute('data-maps')];
+  });
+
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
+  });
+
+  // Conversion tracking: links open in a new tab (or the dialer), so the event fires without delaying navigation.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-conv]');
+    if (!el || typeof gtag !== 'function') return;
+    var kind = el.getAttribute('data-conv');
+    if (CONV[kind]) gtag('event', 'conversion', { send_to: CONV[kind], transport_type: 'beacon' });
+    gtag('event', 'cta_click', { cta: kind, lang: current, transport_type: 'beacon' });
+  });
+
+  var params = new URLSearchParams(location.search);
+  var saved = null;
+  try { saved = localStorage.getItem('nj-lang'); } catch (e) {}
+  var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  applyLang(params.get('lang') || saved || (T[nav] ? nav : 'en'));
+})();
+</script>
+</body>
+</html>
